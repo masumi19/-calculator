@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="calculator">
+    <title>電卓</title>
+</head>
+
+<style>
+    button {
+        width: 70px;
+        height: 70px;
+        font-size: 36px;
+        background-color: white;
+        border: 1px solid darkgrey;
+        border-radius: 10px;
+    }
+    button:hover {
+        background: #4D4E53;
+    }
+    button:active {
+        background: aliceblue;
+    }
+
+    .display {
+        width: 210px;
+        height: 50px;
+        text-align: right;
+        background: white;
+        border-top: solid gainsboro 5px;
+        border-bottom: solid gainsboro 5px;
+        border-right: solid gainsboro 5px;
+        border-left: solid gainsboro 5px;
+        border-radius: 10px;
+        font-size: 30px;
+    }
+
+    .operator {
+        background-color: skyblue;
+    }
+    .operator:hover {
+        background: darkgray;
+    }
+    .operator:active {
+        background: cornflowerblue;
+    }
+
+    .equal {
+        background-color: darkgray;
+    }
+</style>
+
+<body>
+<input type="text" class="display" id="total" value="" disabled>
+<button class="equal" value="c" onclick="erase('')" >C</button>
+<div>
+    <button onclick="symbol('7')">7</button>
+    <button onclick="symbol('8')">8</button>
+    <button onclick="symbol('9')">9</button>
+    <button class="operator" value="÷" name="division" onclick="symbol('/')">÷</button>
+</div>
+<div>
+    <button onclick="symbol( '4' )">4</button>
+    <button onclick="symbol( '5' )">5</button>
+    <button onclick="symbol( '6' )">6</button>
+    <button class="operator" value="×" name="multiplication" onclick="symbol('*')">×</button>
+</div>
+<div>
+    <button onclick="symbol('1')" >1</button>
+    <button onclick="symbol('2')" >2</button>
+    <button onclick="symbol('3')" >3</button>
+    <button class="operator" value="-" onclick="symbol('-')">-</button>
+</div>
+<div>
+    <button onclick="symbol('0')">0</button>
+    <button onclick="symbol('.')" >.</button>
+    <button class="operator" value="+" onclick="symbol('+')">+</button>
+    <button class="operator" onclick="calculation()">=</button>
+</div>
+<script>
+    //<input>の数字を消す
+    function erase(num) {
+        document.querySelector('input').value = num
+    }
+
+    //<input>に打ち込み文字を表示
+    function symbol(num){
+        document.querySelector('input').value += num
+    }
+
+    //<input>に表示されている文字に意味を持たせて計算
+    function calculation() {
+        const num = document.querySelector('input').value;
+        let total = new Function('return' + num);
+        erase(total().toString());
+    }
+</script>
+</body>
+</html>
