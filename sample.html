@@ -51,30 +51,30 @@
 </style>
 
 <body>
-<input type="text" class="display" id="total" value="" disabled>
-<button class="equal" value="c" onclick="erase('')" >C</button>
+<input type="text" class="display" id="display" value="" disabled>
+<button class="equal" onclick="erase('')" >C</button>
 <div>
     <button onclick="symbol('7')">7</button>
     <button onclick="symbol('8')">8</button>
     <button onclick="symbol('9')">9</button>
-    <button class="operator" value="÷" name="division" onclick="symbol('/')">÷</button>
+    <button class="operator" onclick="symbol('/')">÷</button>
 </div>
 <div>
     <button onclick="symbol( '4' )">4</button>
     <button onclick="symbol( '5' )">5</button>
     <button onclick="symbol( '6' )">6</button>
-    <button class="operator" value="×" name="multiplication" onclick="symbol('*')">×</button>
+    <button class="operator" onclick="symbol('*')">×</button>
 </div>
 <div>
     <button onclick="symbol('1')" >1</button>
     <button onclick="symbol('2')" >2</button>
     <button onclick="symbol('3')" >3</button>
-    <button class="operator" value="-" onclick="symbol('-')">-</button>
+    <button class="operator" onclick="symbol('-')">-</button>
 </div>
 <div>
     <button onclick="symbol('0')">0</button>
     <button onclick="symbol('.')" >.</button>
-    <button class="operator" value="+" onclick="symbol('+')">+</button>
+    <button class="operator" onclick="symbol('+')">+</button>
     <button class="operator" onclick="calculation()">=</button>
 </div>
 <script>
@@ -84,16 +84,19 @@
     }
 
     //<input>に打ち込み文字を表示
-    function symbol(num){
+    function symbol(num) {
         document.querySelector('input').value += num
     }
 
+
     //<input>に表示されている文字に意味を持たせて計算
     function calculation() {
-        const num = document.querySelector('input').value;
-        let total = new Function('return' + num);
-        erase(total().toString());
+        const num = document.querySelector('input').value
+        console.log('return ' + num)
+        const total = new Function('return ' + num)
+        erase(total().toString())
     }
+
 </script>
 </body>
 </html>
